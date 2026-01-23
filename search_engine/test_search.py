@@ -1,6 +1,6 @@
 # test_search.py
 
-from searcher import search_posts
+from search_engine.searcher import search_posts
 
 query = "Managing kitchen waste at home"
 

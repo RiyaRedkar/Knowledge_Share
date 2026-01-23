@@ -1,5 +1,5 @@
-from indexer import index_post
-from chroma_client import get_chroma_collection
+from search_engine.indexer import index_post
+from search_engine.chroma_client import get_chroma_collection
 
 posts = [
     {

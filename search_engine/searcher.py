@@ -1,6 +1,6 @@
 # searcher.py
 
-from chroma_client import get_chroma_collection
+from search_engine.chroma_client import get_chroma_collection
 
 # Ranking weights (LOCKED)
 SEMANTIC_WEIGHT = 0.7

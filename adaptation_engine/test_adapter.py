@@ -1,4 +1,4 @@
-from adapter import AdaptationEngine
+from adaptation_engine.adapter import AdaptationEngine
 
 sample_post = {
     "post_id": "p001",

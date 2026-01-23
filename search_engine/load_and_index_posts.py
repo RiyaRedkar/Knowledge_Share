@@ -1,5 +1,5 @@
 import json
-from indexer import index_post
+from search_engine.indexer import index_post
 
 def normalize_score(score):
     # If score is between 0 and 1, convert to 1–100

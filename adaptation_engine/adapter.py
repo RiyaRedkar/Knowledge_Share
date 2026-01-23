@@ -7,7 +7,7 @@ from typing import Dict, Any
 from dotenv import load_dotenv
 from openai import OpenAI
 
-from prompt import build_adaptation_prompt
+from adaptation_engine.prompt import build_adaptation_prompt
 
 load_dotenv()
 
