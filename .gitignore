@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual environment
+venv/
+.env/
+
+# Chroma / Vector DB
+chroma_store/
+*.sqlite3
+*.bin
+
+# Data
+data/
+posts.json
+
+# OS
+.DS_Store
