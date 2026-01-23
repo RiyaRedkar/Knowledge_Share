@@ -1,2 +1,9 @@
-chromadb
-sentence-transformers
+Flask==3.0.3
+openai==1.57.0
+python-dotenv==1.0.1
+SpeechRecognition==3.10.4
+pydub==0.25.1
+vaderSentiment
+langdetect 
+flask_cors
+Flask

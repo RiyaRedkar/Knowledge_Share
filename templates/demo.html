@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Knowledge Share – Demo</title>
+</head>
+<body>
+
+<h2>Created Posts</h2>
+
+{% for post in posts %}
+  <hr>
+  <h3>{{ post.practice_name }}</h3>
+  <p>{{ post.description }}</p>
+
+  <p><b>Validation Score:</b> {{ post.verification_score }}</p>
+
+  <form method="POST" action="/validate/{{ post.post_id }}">
+    <button type="submit">Run Validation</button>
+  </form>
+  <form method="GET" action="/comments/{{ post.post_id }}">
+  <button type="submit">View / Add Comments</button>
+</form>
+
+{% endfor %}
+
+</body>
+</html>

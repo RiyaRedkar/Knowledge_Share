@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Comments</title>
+</head>
+<body>
+
+<h2>Comments for Post {{ post_id }}</h2>
+
+{% if comments %}
+  <ul>
+    {% for c in comments %}
+      <li>
+        {{ c.text }}
+        <small>({{ c.user_type }})</small>
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>No comments yet.</p>
+{% endif %}
+
+<hr>
+
+<h3>Add a Comment</h3>
+
+<form method="POST" action="/comments/{{ post_id }}/add">
+  <textarea name="comment_text" rows="4" cols="60" required></textarea><br><br>
+
+  <label>User Type:</label>
+  <select name="user_type">
+    <option value="opinion">Opinion</option>
+    <option value="experienced">Experienced</option>
+  </select><br><br>
+
+  <button type="submit">Submit Comment</button>
+</form>
+
+<br>
+<a href="/demo">⬅ Back to Posts</a>
+
+</body>
+</html>

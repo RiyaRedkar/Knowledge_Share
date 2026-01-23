@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Create Practice Post</title>
+  <style>
+    body { font-family: Arial; margin: 30px; }
+    .box { width: 600px; padding: 20px; border: 1px solid #ccc; border-radius: 10px; }
+    input, textarea { width: 100%; padding: 8px; margin: 6px 0; }
+    button { padding: 10px 16px; cursor: pointer; }
+    .note { font-size: 14px; color: #444; }
+  </style>
+</head>
+<body>
+
+  <h2>Knowledge Share - Create Post</h2>
+
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <ul>
+        {% for msg in messages %}
+          <li style="color:green;">{{ msg }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+
+  <div class="box">
+    <form action="/generate" method="POST" enctype="multipart/form-data">
+
+      <label><b>Practice Name</b></label>
+      <input type="text" name="practice_name" placeholder="Eg. Rooftop Rainwater Harvesting" required />
+
+      <label><b>Region</b></label>
+      <input type="text" name="region" placeholder="Eg. Maharashtra" required />
+
+      <label><b>Description Text (Optional)</b></label>
+      <textarea name="description" rows="5" placeholder="Write the initial description here..."></textarea>
+
+      <label><b>Audio Upload (Optional)</b></label>
+      <input type="file" name="audio" accept="audio/*" />
+      <p class="note">✅ Either Audio OR Text is mandatory</p>
+
+      <label><b>Image (Optional)</b></label>
+      <input type="file" name="image" accept="image/*" />
+
+      <label><b>Video (Optional)</b></label>
+      <input type="file" name="video" accept="video/*" />
+
+      <label><b>Document/PDF (Optional)</b></label>
+      <input type="file" name="document" accept=".pdf,.doc,.docx,.txt" />
+
+      <br><br>
+      <button type="submit"><b>Generate AI Draft</b></button>
+    </form>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Edit AI Draft</title>
+  <style>
+    body { font-family: Arial; margin: 30px; }
+    textarea { width: 100%; height: 500px; padding: 10px; font-family: monospace; }
+    button { padding: 10px 16px; margin-top: 10px; cursor: pointer; }
+  </style>
+</head>
+<body>
+
+  <h2>AI Draft Generated ✅</h2>
+  <p><b>Post ID:</b> {{ post_id }}</p>
+  <p>Edit JSON if needed, then click <b>Save Final Post</b>.</p>
+
+  <form action="/save/{{ post_id }}" method="POST">
+    <textarea name="edited_json">{{ draft_json }}</textarea>
+    <br>
+    <button type="submit"><b>Save Final Post</b></button>
+  </form>
+
+</body>
+</html>

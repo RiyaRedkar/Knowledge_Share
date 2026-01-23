@@ -1,0 +1,35 @@
+{
+  "post_id": "p002",
+  "practice_name": "Matka Cooling",
+  "description": "A traditional method of cooling drinking water using a clay pot, known as matka, which utilizes evaporation to provide naturally cool water.",
+  "region": "Madhya Pradesh (Bundelkhand)",
+  "principles": [
+    "Utilizes natural evaporation for cooling",
+    "Promotes water conservation",
+    "Reduces electricity consumption"
+  ],
+  "steps": [
+    "Store drinking water in a clay pot (matka).",
+    "Place the matka in a shaded and airy location.",
+    "Position the matka on a stand for better airflow.",
+    "Cover the mouth of the matka with a clean cloth to prevent dust and insects.",
+    "Wash the pot weekly and change the water daily to avoid algae and odor."
+  ],
+  "materials": [
+    "Clay pot (matka)",
+    "Clean cloth",
+    "Water"
+  ],
+  "risks": [
+    "Potential for contamination if not cleaned regularly.",
+    "Water may become warm if not placed in a shaded area."
+  ],
+  "media": {
+    "images": [
+      "uploads/media/images/89fdf4265302477abb884aa245f65666.png"
+    ],
+    "videos": [],
+    "documents": []
+  },
+  "verification_score": 85
+}

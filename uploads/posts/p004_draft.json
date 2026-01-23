@@ -1,0 +1,31 @@
+{
+  "post_id": "p004",
+  "practice_name": "clay pot water cooling",
+  "description": "Traditional use of earthen clay pots to store drinking water and keep it naturally cool during summer without electricity.",
+  "region": "Maharashtra",
+  "principles": [
+    "Utilizes natural materials",
+    "Promotes sustainable living",
+    "Reduces reliance on electricity"
+  ],
+  "steps": [
+    "Select a clean, unglazed clay pot.",
+    "Fill the pot with clean drinking water.",
+    "Place the pot in a shaded area to prevent direct sunlight.",
+    "Allow the water to cool naturally through evaporation."
+  ],
+  "materials": [
+    "Earthen clay pot",
+    "Clean drinking water"
+  ],
+  "risks": [
+    "Potential contamination if the pot is not cleaned properly",
+    "Water may become warm if not placed in a shaded area"
+  ],
+  "media": {
+    "images": [],
+    "videos": [],
+    "documents": []
+  },
+  "verification_score": 85
+}
