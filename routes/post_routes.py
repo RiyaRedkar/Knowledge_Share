@@ -120,23 +120,19 @@ def search():
 @post_bp.route("/adapt/<post_id>", methods=["POST"])
 def adapt(post_id):
     from adaptation_engine.adapter import AdaptationEngine
-    from shared.data_provider import iter_live_posts, get_post_for_adaptation
+    from shared.data_provider import get_post_for_adaptation
 
-    # ✅ MATCHES demo.html textarea name
     user_context = request.form.get("user_context", "").strip()
 
-    # ✅ LOAD FULL POST JSON
+    # Load only the selected post
     post = get_post_for_adaptation(post_id)
 
-    # ✅ PASS POST INTO ENGINE (THIS FIXES THE ERROR)
     engine = AdaptationEngine(post)
     adapted_result = engine.adapt(user_context)
 
-    posts = list(iter_live_posts())
-
     return render_template(
         "demo.html",
-        posts=posts,
+        posts=[post],               # 🔥 ONLY THIS POST
         adapted_result=adapted_result,
         adapted_post_id=post_id,
         search_query=None
