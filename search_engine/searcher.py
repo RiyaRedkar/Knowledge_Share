@@ -1,45 +1,34 @@
-# searcher.py
-
 from search_engine.chroma_client import get_chroma_collection
 
-# Ranking weights (LOCKED)
 SEMANTIC_WEIGHT = 0.7
 VERIFICATION_WEIGHT = 0.3
-
-# Optional safety filter
 MIN_VERIFICATION_SCORE = 40
 
 
-def search_posts(user_query: str, top_k: int = 3):
-    """
-    Search for relevant posts using semantic similarity
-    and re-rank using verification score.
-    """
+def search_posts(user_query: str, top_k: int = 5):
     collection = get_chroma_collection()
 
-    # Query ChromaDB
+    print("🔎 Chroma indexed count:", collection.count())
+
     results = collection.query(
         query_texts=[user_query],
-        n_results=5,   # retrieve more, rank later
+        n_results=5,
         include=["metadatas", "distances"]
     )
 
     ranked_results = []
 
-    # Chroma returns lists inside lists
     metadatas = results.get("metadatas", [[]])[0]
     distances = results.get("distances", [[]])[0]
 
     for metadata, distance in zip(metadatas, distances):
         verification_score = metadata.get("verification_score", 0)
 
-        # Filter low-trust content
-        if verification_score < 0: #MIN_VERIFICATION_SCORE:
-            continue
+        # 🔥 TEMPORARILY RELAX FILTER FOR DEMO
+        # if verification_score < MIN_VERIFICATION_SCORE:
+        #     continue
 
-        # Convert distance to similarity (Chroma uses distance)
         semantic_score = 1 / (1 + distance)
-
         verification_norm = verification_score / 100
 
         final_score = (
@@ -54,10 +43,8 @@ def search_posts(user_query: str, top_k: int = 3):
             "final_score": round(final_score, 4)
         })
 
-    # Sort by final score
-    ranked_results.sort(
-        key=lambda x: x["final_score"],
-        reverse=True
-    )
+    ranked_results.sort(key=lambda x: x["final_score"], reverse=True)
+
+    print("✅ Search returning", len(ranked_results), "results")
 
     return ranked_results[:top_k]
