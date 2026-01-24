@@ -1,175 +1,127 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Knowledge Share – Validation</title>
-
+  <title>Knowledge Share – Demo</title>
   <style>
     body {
-      margin: 0;
       font-family: Arial, sans-serif;
-      background: #f5f6f8;
-      color: #222;
     }
-
-    /* ---------- Header ---------- */
-    header {
-      background: #2563eb;
-      color: white;
-      padding: 16px 20px;
+    textarea {
+      width: 100%;
     }
-
-    nav {
-      max-width: 1100px;
-      margin: auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    nav a {
-      color: white;
-      margin-left: 16px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    /* ---------- Layout ---------- */
-    .container {
-      max-width: 1100px;
-      margin: auto;
-      padding: 30px 20px;
-    }
-
-    h2 {
+    .post-box {
       margin-bottom: 20px;
     }
-
-    /* ---------- Post Card ---------- */
-    .post-card {
-      background: white;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-      margin-bottom: 20px;
+    .adapt-box {
+      margin-top: 12px;
+      padding: 12px;
+      border: 1px solid #ccc;
+      background: #fafafa;
     }
-
-    .post-card h3 {
-      margin-top: 0;
-      margin-bottom: 10px;
-    }
-
-    .meta {
-      font-size: 14px;
-      margin-bottom: 6px;
-    }
-
-    .score {
-      font-weight: bold;
+    .adapt-result {
       margin-top: 10px;
-    }
-
-    /* ---------- Buttons ---------- */
-    .actions {
-      margin-top: 15px;
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      padding: 10px 14px;
-      border-radius: 6px;
-      border: none;
-      cursor: pointer;
-      font-weight: bold;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 14px;
-    }
-
-    .btn-primary {
-      background: #2563eb;
-      color: white;
-    }
-
-    .btn-secondary {
-      background: #444;
-      color: white;
-    }
-
-    .btn:hover {
-      opacity: 0.9;
-    }
-
-    /* ---------- Empty State ---------- */
-    .empty {
-      background: white;
-      padding: 30px;
-      border-radius: 8px;
-      text-align: center;
-      color: #555;
-    }
-
-    /* ---------- Responsive ---------- */
-    @media (max-width: 600px) {
-      .actions {
-        flex-direction: column;
-      }
+      padding: 10px;
+      background: #f3f3f3;
+      border-left: 4px solid #4CAF50;
     }
   </style>
 </head>
 
 <body>
 
-<header>
-  <nav>
-    <div><b>Knowledge Share</b></div>
-    <div>
-      <a href="/">Home</a>
-      <a href="/create">Create</a>
-      <a href="/validate">Validate</a>
-    </div>
-  </nav>
-</header>
+<h2>Created Posts</h2>
 
-<div class="container">
+<!-- 🔍 SEARCH BAR -->
+<form method="GET" action="/search">
+  <input
+    type="text"
+    name="q"
+    placeholder="Search practices..."
+    value="{{ search_query or '' }}"
+  >
+  <button type="submit">Search</button>
+  <a href="/demo">Clear</a>
+</form>
 
-  <h2>Created Practices</h2>
+<hr>
 
-  {% if posts and posts|length > 0 %}
-    {% for post in posts %}
-      <div class="post-card">
-        <h3>{{ post.practice_name }}</h3>
+{% for post in posts %}
+<div class="post-box">
 
-        <div class="meta"><b>Region:</b> {{ post.region }}</div>
-        <div class="meta"><b>Description:</b> {{ post.description or "—" }}</div>
+  <!-- 🧠 POST CONTENT -->
+  <h3>{{ post.practice_name }}</h3>
+  <p>{{ post.description }}</p>
 
-        <div class="score">
-          Verification Score: {{ post.verification_score }}
-        </div>
+  <p>
+    <b>Validation Score:</b>
+    {{ post.validation_score if post.validation_score is defined else post.verification_score }}
+  </p>
 
-        <div class="actions">
-          <form action="/run_validation/{{ post.post_id }}" method="POST">
-            <button class="btn btn-primary" type="submit">
-              Run Validation
-            </button>
-          </form>
+  <!-- ACTIONS -->
+  <form method="POST" action="/validate/{{ post.post_id }}">
+    <button type="submit">Run Validation</button>
+  </form>
 
-          <a href="/comments/{{ post.post_id }}" class="btn btn-secondary">
-            View / Add Comments
-          </a>
-        </div>
+  <form method="GET" action="/comments/{{ post.post_id }}">
+    <button type="submit">View / Add Comments</button>
+  </form>
+
+  <!-- 🤖 ADAPTATION -->
+  <div class="adapt-box">
+    <h4>Personalize for Your Context</h4>
+
+    <form method="POST" action="/adapt/{{ post.post_id }}">
+      <textarea
+        name="user_context"
+        rows="3"
+        placeholder="Describe your space, location, constraints..."
+        required
+      ></textarea>
+      <br>
+      <button type="submit">Adapt This Practice</button>
+    </form>
+
+    <!-- ✅ SHOW ADAPTATION ONLY FOR THIS POST -->
+    {% if adapted_post_id == post.post_id %}
+      <div class="adapt-result">
+        <h4>Adapted Solution</h4>
+
+        <p><b>Solution:</b> {{ adapted_result.adapted_solution }}</p>
+
+        {% if adapted_result.how_to_apply %}
+          <h5>How to Apply</h5>
+          <ul>
+            {% for step in adapted_result.how_to_apply %}
+              <li>{{ step }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+
+        {% if adapted_result.materials_needed %}
+          <h5>Materials Needed</h5>
+          <ul>
+            {% for item in adapted_result.materials_needed %}
+              <li>{{ item }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+
+        {% if adapted_result.warnings %}
+          <h5>Warnings</h5>
+          <ul>
+            {% for warn in adapted_result.warnings %}
+              <li>{{ warn }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
       </div>
-    {% endfor %}
-  {% else %}
-    <div class="empty">
-      <p>No practices created yet.</p>
-    </div>
-  {% endif %}
+    {% endif %}
 
+  </div>
+
+  <hr>
 </div>
+{% endfor %}
 
 </body>
 </html>

@@ -34,7 +34,7 @@ def search_posts(user_query: str, top_k: int = 3):
         verification_score = metadata.get("verification_score", 0)
 
         # Filter low-trust content
-        if verification_score < MIN_VERIFICATION_SCORE:
+        if verification_score < 0: #MIN_VERIFICATION_SCORE:
             continue
 
         # Convert distance to similarity (Chroma uses distance)

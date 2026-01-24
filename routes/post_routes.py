@@ -5,24 +5,19 @@ from datetime import datetime
 post_bp = Blueprint("posts", __name__)
 
 # --------------------
-# LANDING / NAV
+# INDEX (STEP 1)
 # --------------------
-
 @post_bp.route("/")
-def landing():
-    return render_template("landing.html")
-
-@post_bp.route("/create")
-def create_practice():
+def index():
     return render_template("home.html")
 
 # --------------------
 # GENERATE (STEP 2)
 # --------------------
-
 @post_bp.route("/generate", methods=["POST"])
 def generate_post():
 
+    # Create draft
     draft = {
         "practice_name": request.form.get("practice_name", ""),
         "description": request.form.get("description", ""),
@@ -38,12 +33,14 @@ def generate_post():
         }
     }
 
+    # Assign post_id
     post_id = "p" + uuid.uuid4().hex[:6].upper()
     draft["post_id"] = post_id
+
+    # Module 2 owns this
     draft["verification_score"] = 0
 
-    os.makedirs("uploads/posts", exist_ok=True)
-
+    # Save draft
     with open(f"uploads/posts/{post_id}_draft.json", "w") as f:
         json.dump(draft, f, indent=2)
 
@@ -56,7 +53,6 @@ def generate_post():
 # --------------------
 # SAVE (STEP 3)
 # --------------------
-
 @post_bp.route("/save/<post_id>", methods=["POST"])
 def save_post(post_id):
     edited_json = request.form.get("edited_json")
@@ -69,122 +65,54 @@ def save_post(post_id):
     with open(f"uploads/posts/{post_id}.json", "w") as f:
         json.dump(post, f, indent=2)
 
-    return redirect(url_for("posts.validate"))
+    return redirect(url_for("posts.demo"))
 
 # --------------------
-# VALIDATE (STEP 4)
+# DEMO (STEP 4)
 # --------------------
-
-@post_bp.route("/validate")
-@post_bp.route("/validate")
-def validate():
+@post_bp.route("/demo")
+def demo():
     posts = []
 
-    if os.path.exists("uploads/posts"):
-        for file in os.listdir("uploads/posts"):
-            if file.endswith(".json") and not file.endswith("_draft.json"):
-                with open(os.path.join("uploads/posts", file)) as f:
-                    posts.append(json.load(f))
-
-    return render_template("demo.html", posts=posts)
-
-# --------------------
-# RUN VALIDATION (STEP 5)
-# --------------------
-@post_bp.route("/run_validation/<post_id>", methods=["POST"])
-def run_validation(post_id):
-    post_file = f"uploads/posts/{post_id}.json"
-    comments_file = f"uploads/comments/{post_id}.json"
-
-    if not os.path.exists(post_file):
-        return "Post not found", 404
-
-    with open(post_file) as f:
-        post = json.load(f)
-
-    # Load comments
-    if os.path.exists(comments_file):
-        with open(comments_file) as f:
-            comments_data = json.load(f)
-            comments = comments_data.get("comments", [])
-    else:
-        comments = []
-
-    # Compute validation score
-    score = compute_validation_score(comments)
-
-    # Update post
-    post["verification_score"] = score
-    post["validated_at"] = datetime.utcnow().isoformat()
-
-    with open(post_file, "w") as f:
-        json.dump(post, f, indent=2)
-
-    return redirect(url_for("posts.validate"))
-
-
-# --------------------
-# COMMENTS PAGE (STEP 6)
-# --------------------
-
-@post_bp.route("/comments/<post_id>", methods=["GET", "POST"])
-def comments(post_id):
-    comments_dir = "uploads/comments"
-    os.makedirs(comments_dir, exist_ok=True)
-
-    comments_file = os.path.join(comments_dir, f"{post_id}.json")
-
-    # Load existing comments
-    if os.path.exists(comments_file):
-        with open(comments_file) as f:
-            data = json.load(f)
-    else:
-        data = {
-            "post_id": post_id,
-            "comments": []
-        }
-
-    # Handle new comment submission
-    if request.method == "POST":
-        comment_text = request.form.get("comment")
-
-        if comment_text:
-            data["comments"].append({
-                "text": comment_text,
-                "created_at": datetime.utcnow().isoformat()
-            })
-
-            with open(comments_file, "w") as f:
-                json.dump(data, f, indent=2)
-
-        return redirect(url_for("posts.comments", post_id=post_id))
+    for file in os.listdir("uploads/posts"):
+        if file.endswith(".json") and not file.endswith("_draft.json"):
+            with open(os.path.join("uploads/posts", file)) as f:
+                posts.append(json.load(f))
 
     return render_template(
-        "comments.html",
-        post_id=post_id,
-        comments=data["comments"]
+        "demo.html",
+        posts=posts,
+        adapted_result=None,
+        adapted_post_id=None,
+        search_query=None
     )
-def compute_validation_score(comments):
-    """
-    Simple heuristic-based validation score
-    (can be replaced by NLP model later)
-    """
-    if not comments:
-        return 0.0
 
-    score = 0
-    for c in comments:
-        text = c["text"].lower()
+# --------------------
+# SEARCH
+# --------------------
+@post_bp.route("/search", methods=["GET"])
+def search():
+    from search_engine.searcher import search_posts
+    from shared.data_provider import load_post
 
-        if any(x in text for x in ["used", "tried", "experience", "village", "years"]):
-            score += 2        # experienced comment
-        elif any(x in text for x in ["good", "useful", "effective"]):
-            score += 1        # positive opinion
-        elif any(x in text for x in ["bad", "useless", "outdated"]):
-            score -= 1
+    query = request.args.get("q", "").strip()
+    posts = []
 
-    normalized = max(0, min(100, score * 10))
-    return normalized
+    if query:
+        results = search_posts(query)
+        for r in results:
+            try:
+                posts.append(load_post(r["post_id"]))
+            except FileNotFoundError:
+                pass
+
+    return render_template(
+        "demo.html",
+        posts=posts,
+        search_query=query,
+        adapted_result=None,
+        adapted_post_id=None
+    )
 
 # --------------------
 # ADAPTATION
@@ -192,20 +120,28 @@ def compute_validation_score(comments):
 @post_bp.route("/adapt/<post_id>", methods=["POST"])
 def adapt(post_id):
     from adaptation_engine.adapter import AdaptationEngine
-    from shared.data_provider import get_post_for_adaptation
+    from shared.data_provider import iter_live_posts, get_post_for_adaptation
 
+    # ✅ MATCHES demo.html textarea name
     user_context = request.form.get("user_context", "").strip()
 
-    # Load only the selected post
+    # ✅ LOAD FULL POST JSON
     post = get_post_for_adaptation(post_id)
 
+    # ✅ PASS POST INTO ENGINE (THIS FIXES THE ERROR)
     engine = AdaptationEngine(post)
     adapted_result = engine.adapt(user_context)
 
+    posts = list(iter_live_posts())
+
     return render_template(
         "demo.html",
-        posts=[post],               # 🔥 ONLY THIS POST
+        posts=posts,
         adapted_result=adapted_result,
         adapted_post_id=post_id,
         search_query=None
     )
+
+
+
+
