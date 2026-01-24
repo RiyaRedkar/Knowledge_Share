@@ -27,6 +27,7 @@
     "videos": [],
     "documents": []
   },
-  "verification_score": 45.0,
-  "saved_at": "2026-01-23T17:59:55.095641Z"
+  "verification_score": 10,
+  "saved_at": "2026-01-23T17:59:55.095641Z",
+  "validated_at": "2026-01-24T02:43:45.669076"
 }

@@ -1,27 +1,175 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Knowledge Share – Demo</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Knowledge Share – Validation</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f6f8;
+      color: #222;
+    }
+
+    /* ---------- Header ---------- */
+    header {
+      background: #2563eb;
+      color: white;
+      padding: 16px 20px;
+    }
+
+    nav {
+      max-width: 1100px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav a {
+      color: white;
+      margin-left: 16px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    /* ---------- Layout ---------- */
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 30px 20px;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    /* ---------- Post Card ---------- */
+    .post-card {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      margin-bottom: 20px;
+    }
+
+    .post-card h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+
+    .meta {
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+
+    .score {
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    /* ---------- Buttons ---------- */
+    .actions {
+      margin-top: 15px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 10px 14px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 14px;
+    }
+
+    .btn-primary {
+      background: #2563eb;
+      color: white;
+    }
+
+    .btn-secondary {
+      background: #444;
+      color: white;
+    }
+
+    .btn:hover {
+      opacity: 0.9;
+    }
+
+    /* ---------- Empty State ---------- */
+    .empty {
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      text-align: center;
+      color: #555;
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 600px) {
+      .actions {
+        flex-direction: column;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<h2>Created Posts</h2>
+<header>
+  <nav>
+    <div><b>Knowledge Share</b></div>
+    <div>
+      <a href="/">Home</a>
+      <a href="/create">Create</a>
+      <a href="/validate">Validate</a>
+    </div>
+  </nav>
+</header>
 
-{% for post in posts %}
-  <hr>
-  <h3>{{ post.practice_name }}</h3>
-  <p>{{ post.description }}</p>
+<div class="container">
 
-  <p><b>Validation Score:</b> {{ post.verification_score }}</p>
+  <h2>Created Practices</h2>
 
-  <form method="POST" action="/validate/{{ post.post_id }}">
-    <button type="submit">Run Validation</button>
-  </form>
-  <form method="GET" action="/comments/{{ post.post_id }}">
-  <button type="submit">View / Add Comments</button>
-</form>
+  {% if posts and posts|length > 0 %}
+    {% for post in posts %}
+      <div class="post-card">
+        <h3>{{ post.practice_name }}</h3>
 
-{% endfor %}
+        <div class="meta"><b>Region:</b> {{ post.region }}</div>
+        <div class="meta"><b>Description:</b> {{ post.description or "—" }}</div>
+
+        <div class="score">
+          Verification Score: {{ post.verification_score }}
+        </div>
+
+        <div class="actions">
+          <form action="/run_validation/{{ post.post_id }}" method="POST">
+            <button class="btn btn-primary" type="submit">
+              Run Validation
+            </button>
+          </form>
+
+          <a href="/comments/{{ post.post_id }}" class="btn btn-secondary">
+            View / Add Comments
+          </a>
+        </div>
+      </div>
+    {% endfor %}
+  {% else %}
+    <div class="empty">
+      <p>No practices created yet.</p>
+    </div>
+  {% endif %}
+
+</div>
 
 </body>
 </html>

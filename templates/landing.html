@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Knowledge Share</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f6f8;
+      color: #222;
+    }
+
+    header {
+      background: #2563eb;
+      color: white;
+      padding: 16px 20px;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    nav a {
+      color: white;
+      margin-left: 16px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .hero {
+      max-width: 1000px;
+      margin: auto;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 36px;
+      margin-bottom: 12px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #444;
+      max-width: 700px;
+      margin: auto;
+    }
+
+    .actions {
+      margin-top: 30px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 20px;
+      margin: 10px;
+      background: #2563eb;
+      color: white;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .btn.secondary {
+      background: #444;
+    }
+
+    section {
+      max-width: 1000px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    section h2 {
+      margin-bottom: 12px;
+    }
+
+    footer {
+      background: #eee;
+      text-align: center;
+      padding: 15px;
+      font-size: 14px;
+      color: #555;
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 {
+        font-size: 26px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <nav>
+    <div><b>Knowledge Share</b></div>
+    <div>
+      <a href="/">Home</a>
+      <a href="#about">About</a>
+      <a href="/create">Create</a>
+      <a href="/validate">Validate</a>
+    </div>
+  </nav>
+</header>
+
+<div class="hero">
+  <h1>Preserving Traditional Knowledge for the Future</h1>
+  <p>
+    Knowledge Share helps document, validate, and adapt indigenous sustainability
+    practices through community input and AI-assisted validation.
+  </p>
+
+  <div class="actions">
+    <a href="/create" class="btn">Create a Practice</a>
+    <a href="/validate" class="btn secondary">View Validation</a>
+  </div>
+</div>
+
+<section id="about">
+  <h2>About the Platform</h2>
+  <p>
+    Traditional knowledge is disappearing as generations change. Our platform
+    enables communities to record practices using text, audio, images, and video,
+    validate them collaboratively, and adapt them for modern use cases.
+  </p>
+</section>
+
+<footer>
+  Knowledge Share · Hackathon Prototype
+</footer>
+
+</body>
+</html>
