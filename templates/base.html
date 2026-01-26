@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Knowledge Share</title>
+  <style>
+    /* PAGE CONTAINER */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 24px;
+}
+
+/* FORM CARD */
+.form-card {
+  max-width: 820px;
+  width: 100%;
+  margin: 0 auto;
+  background: #ffffff;
+  padding: 28px;
+  border-radius: 18px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+}
+
+/* FORM LAYOUT */
+.form-group {
+  margin-bottom: 16px;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+input[type="text"],
+textarea,
+input[type="file"] {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #cfe5e3;
+  font-size: 14px;
+}
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: linear-gradient(180deg, #eaf7f6, #ffffff);
+      color: #143a3a;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      background: #ffffffcc;
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid #dbeeee;
+      padding: 14px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      font-weight: 700;
+      font-size: 18px;
+      color: #105f5f;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #105f5f;
+      font-weight: 600;
+      padding: 8px 14px;
+      border-radius: 20px;
+      background: #c8e6e2;
+    }
+
+    /* PAGE */
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 50px 24px;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 26px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 20px;
+      border-radius: 14px;
+      background: #9ed5d1;
+      color: #0f3f3f;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .btn:hover {
+      background: #63c1bb;
+    }
+
+    .muted {
+      color: #4b7b7b;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR (ONLY HOME) -->
+  <div class="navbar">
+  <div class="brand">🌿 Knowledge Share</div>
+
+  <div class="nav-links">
+    <a href="/" class="active">Home</a>
+  </div>
+</div>
+
+
+  <!-- PAGE CONTENT -->
+  <div class="container">
+    {% block content %}{% endblock %}
+  </div>
+
+</body>
+</html>

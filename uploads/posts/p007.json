@@ -1,0 +1,37 @@
+{
+  "post_id": "p007",
+  "practice_name": "Clay Pot",
+  "description": "Clay pots are traditional containers made from natural clay, used for cooking and storing food. They are eco-friendly and help in maintaining the natural taste of food.",
+  "region": "maharastra",
+  "principles": [
+    "Sustainable sourcing of clay",
+    "Minimizing carbon footprint",
+    "Promoting local craftsmanship"
+  ],
+  "steps": [
+    "Source natural clay from local suppliers.",
+    "Shape the clay into pots using traditional methods.",
+    "Dry the pots in the sun to avoid energy consumption.",
+    "Fire the pots in a kiln using sustainable fuels.",
+    "Promote the use of clay pots in local communities."
+  ],
+  "materials": [
+    "Natural clay",
+    "Water",
+    "Sustainable fuels for firing"
+  ],
+  "risks": [
+    "Over-extraction of clay leading to environmental degradation",
+    "Potential for cracking during drying or firing",
+    "Market competition from plastic and metal containers"
+  ],
+  "media": {
+    "images": [
+      "uploads/media/images/8ab6c08999e24e08a5c2d7caf0ab9c7d.png"
+    ],
+    "videos": [],
+    "documents": []
+  },
+  "verification_score": 85,
+  "saved_at": "2026-01-23T20:54:59.474347Z"
+}

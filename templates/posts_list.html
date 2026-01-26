@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2 style="margin:0 0 14px;">Saved Posts</h2>
+
+{% if posts|length == 0 %}
+  <p class="muted">No posts found yet.</p>
+{% endif %}
+
+{% for post in posts %}
+  <div class="card" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+    <div style="font-weight:900; font-size:18px;">
+      {{ post.practice_name }}
+    </div>
+    <a class="btn" href="/post/{{ post.post_id }}">Open</a>
+  </div>
+{% endfor %}
+
+{% endblock %}

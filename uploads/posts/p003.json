@@ -1,0 +1,37 @@
+{
+  "post_id": "p003",
+  "practice_name": "Traditional Rooftop Rainwater Harvesting",
+  "description": "A method of collecting and storing rainwater from rooftops to reduce dependence on borewell water.",
+  "region": "Rajasthan",
+  "principles": [
+    "Water conservation",
+    "Sustainable resource management"
+  ],
+  "steps": [
+    "Collect rainwater from the roof using gutters connected to a pipe.",
+    "Divert the first rainwater to remove dust using a first flush system.",
+    "Pass the water through a sand, gravel, and charcoal filter.",
+    "Store the filtered water in an underground tank with a tight lid.",
+    "Clean the roof before the monsoon season and wash the filter regularly."
+  ],
+  "materials": [
+    "Gutters",
+    "Pipes",
+    "First flush system",
+    "Sand",
+    "Gravel",
+    "Charcoal",
+    "Underground tank"
+  ],
+  "risks": [
+    "Contamination of water if filters are not maintained.",
+    "Potential overflow of the storage tank during heavy rains."
+  ],
+  "media": {
+    "images": [],
+    "videos": [],
+    "documents": []
+  },
+  "verification_score": 85,
+  "saved_at": "2026-01-23T18:28:34.740321Z"
+}

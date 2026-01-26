@@ -1,0 +1,33 @@
+{
+  "post_id": "pD7455B",
+  "practice_name": "Neem Leaves for Grain Storage",
+  "description": "A traditional technique used in desert regions to harvest rainwater, allowing moisture to seep into the soil and recharge groundwater, supporting crop cultivation in dry climates without the need for pumps.",
+  "region": "Madhya Pradesh (Bundelkhand)",
+  "principles": [
+    "Sustainable water management",
+    "Soil moisture conservation",
+    "Support for agriculture in arid climates"
+  ],
+  "steps": [
+    "Identify suitable land slopes for rainwater harvesting.",
+    "Construct barriers or channels to direct rainwater.",
+    "Allow water to spread across agricultural land.",
+    "Monitor soil moisture levels to ensure effectiveness."
+  ],
+  "materials": [
+    "Natural barriers (e.g., stones, soil)",
+    "Channels for directing water",
+    "Tools for construction (e.g., shovels, hoes)"
+  ],
+  "risks": [
+    "Erosion of soil if not properly managed",
+    "Insufficient rainfall may limit effectiveness",
+    "Potential for waterlogging in poorly designed systems"
+  ],
+  "media": {
+    "images": [],
+    "videos": [],
+    "documents": []
+  },
+  "verification_score": 85
+}

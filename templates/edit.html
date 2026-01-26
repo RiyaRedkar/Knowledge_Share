@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Edit Draft</title>
+  <style>
+    body { margin:0; font-family: Arial; background:#0b1220; color:#fff; }
+    .topbar{ padding:16px 22px; background:rgba(255,255,255,0.06); border-bottom:1px solid rgba(255,255,255,0.1); }
+    .topbar a{ color:#fff; text-decoration:none; font-weight:800; margin-right:16px; }
+    .wrap{ max-width:1100px; margin:0 auto; padding:26px 18px; }
+    .grid{ display:grid; grid-template-columns: 1.2fr 0.8fr; gap:16px; }
+    .card{ background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:18px; padding:18px; }
+    label{ font-weight:900; display:block; margin-top:12px; }
+    input, textarea{
+      width:100%; padding:10px; margin-top:6px;
+      border-radius:12px; border:1px solid rgba(255,255,255,0.16);
+      background:rgba(0,0,0,0.25); color:#fff;
+    }
+    textarea{ min-height:90px; }
+    .btn{ padding:12px 16px; border:none; border-radius:14px; font-weight:900; cursor:pointer; }
+    .save{ background:#34d399; }
+    .meta{ color:rgba(255,255,255,0.75); margin-bottom:10px; }
+  </style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="/">🏠 Home</a>
+    <a href="/create">📝 Create Post</a>
+    <a href="/posts">📚 View Posts</a>
+  </div>
+
+  <div class="wrap">
+    <h2>Edit Draft as Post</h2>
+    <div class="meta"><b>Post ID:</b> {{ post_id }}</div>
+
+    <div class="grid">
+      <div class="card">
+        <h3>📝 Edit Post Content</h3>
+
+        <form action="/save/{{ post_id }}" method="POST">
+
+          <label>Practice Name</label>
+          <input name="practice_name" value="{{ draft.practice_name }}" required>
+
+          <label>Region</label>
+          <input name="region" value="{{ draft.region }}" required>
+
+          <label>Description</label>
+          <textarea name="description" required>{{ draft.description }}</textarea>
+
+          <label>Principles (one per line)</label>
+          <textarea name="principles">{% for p in draft.principles %}{{ p }}
+{% endfor %}</textarea>
+
+          <label>Steps (one per line)</label>
+          <textarea name="steps">{% for s in draft.steps %}{{ s }}
+{% endfor %}</textarea>
+
+          <label>Materials (one per line)</label>
+          <textarea name="materials">{% for m in draft.materials %}{{ m }}
+{% endfor %}</textarea>
+
+          <label>Risks (one per line)</label>
+          <textarea name="risks">{% for r in draft.risks %}{{ r }}
+{% endfor %}</textarea>
+
+          <!-- Keep media same (hidden) -->
+          <input type="hidden" name="media_json" value='{{ draft.media | tojson }}'>
+          <input type="hidden" name="verification_score" value="{{ draft.verification_score }}">
+
+          <br><br>
+          <button class="btn save" type="submit">✅ Save Final Post</button>
+        </form>
+      </div>
+
+      <div class="card">
+        <h3>✨ Coming Soon</h3>
+        <p style="color:rgba(255,255,255,0.8); line-height:1.6;">
+          Convert this JSON-based post into:
+          <br>✅ LinkedIn post
+          <br>✅ Instagram caption
+          <br>✅ Carousel Cards
+        </p>
+        <button class="btn" style="background:#60a5fa;" onclick="alert('Next module: JSON → Social Post Generator')">
+          🚀 Convert to Social Post
+        </button>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

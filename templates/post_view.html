@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="card">
+
+  <!-- Header -->
+  <h2 style="margin-top:0; font-size:30px;">{{ post.practice_name }}</h2>
+  <p class="muted" style="margin-top:6px;">
+    <b>Region:</b> {{ post.region }}
+  </p>
+
+  <hr style="border:0; border-top:1px solid rgba(255,255,255,0.12); margin:16px 0;">
+
+  <!-- Description -->
+  <h3 style="margin:0 0 8px;">Description</h3>
+  <p class="muted" style="margin-top:0;">{{ post.description }}</p>
+
+  <!-- Principles -->
+  <h3 style="margin-top:18px;">Principles</h3>
+  {% if post.principles and post.principles|length > 0 %}
+    <div style="margin-top:8px;">
+      {% for p in post.principles %}
+        <span class="tag" style="margin-right:6px; margin-bottom:6px; display:inline-block;">
+          {{ p }}
+        </span>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p class="muted">No principles provided.</p>
+  {% endif %}
+
+  <!-- Steps -->
+  <h3 style="margin-top:18px;">Steps</h3>
+  {% if post.steps and post.steps|length > 0 %}
+    <ul style="margin-top:8px; line-height:1.7;">
+      {% for s in post.steps %}
+        <li>{{ s }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p class="muted">No steps provided.</p>
+  {% endif %}
+
+  <!-- Materials -->
+  <h3 style="margin-top:18px;">Materials</h3>
+  {% if post.materials and post.materials|length > 0 %}
+    <ul style="margin-top:8px; line-height:1.7;">
+      {% for m in post.materials %}
+        <li>{{ m }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p class="muted">No materials provided.</p>
+  {% endif %}
+
+  <!-- Risks -->
+  <h3 style="margin-top:18px;">Risks</h3>
+  {% if post.risks and post.risks|length > 0 %}
+    <ul style="margin-top:8px; line-height:1.7;">
+      {% for r in post.risks %}
+        <li>{{ r }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p class="muted">No risks provided.</p>
+  {% endif %}
+
+  <!-- Media -->
+  <h3 style="margin-top:22px;">Media</h3>
+
+  <!-- Images -->
+  <h4 style="margin:10px 0 6px;">Images</h4>
+  {% if post.media and post.media.images and post.media.images|length > 0 %}
+    <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:10px;">
+      {% for img in post.media.images %}
+        <img src="/uploads/{{ img.replace('uploads/','') }}"
+             alt="uploaded image"
+             style="max-width:220px; border-radius:16px; border:1px solid rgba(255,255,255,0.14);" />
+      {% endfor %}
+    </div>
+  {% else %}
+    <p class="muted">No images uploaded.</p>
+  {% endif %}
+
+  <!-- Videos -->
+  <h4 style="margin:16px 0 6px;">Videos</h4>
+  {% if post.media and post.media.videos and post.media.videos|length > 0 %}
+    <ul style="margin-top:8px;">
+      {% for v in post.media.videos %}
+        <li>
+          <a href="/uploads/{{ v.replace('uploads/','') }}" target="_blank" style="color: var(--mint2); font-weight:800;">
+            View Video
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p class="muted">No videos uploaded.</p>
+  {% endif %}
+
+  <!-- Documents -->
+  <h4 style="margin:16px 0 6px;">Documents</h4>
+  {% if post.media and post.media.documents and post.media.documents|length > 0 %}
+    <ul style="margin-top:8px;">
+      {% for d in post.media.documents %}
+        <li>
+          <a href="/uploads/{{ d.replace('uploads/','') }}" target="_blank" style="color: var(--mint2); font-weight:800;">
+            Open Document
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p class="muted">No documents uploaded.</p>
+  {% endif %}
+
+  <!-- Back Button -->
+  <div style="margin-top:22px;">
+    <a class="btn" href="/posts">⬅ Back to Posts</a>
+  </div>
+
+</div>
+
+{% endblock %}

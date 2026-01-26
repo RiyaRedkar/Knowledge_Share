@@ -1,0 +1,39 @@
+{
+  "post_id": "p004",
+  "practice_name": "Pit Composting using Kitchen Waste",
+  "description": "This method converts kitchen waste into compost using a pit, promoting sustainable waste management and enriching soil.",
+  "region": "Karnataka",
+  "principles": [
+    "Waste reduction",
+    "Soil enrichment",
+    "Sustainable practices"
+  ],
+  "steps": [
+    "Dig a pit in the ground.",
+    "Add a layer of dry leaves at the bottom of the pit.",
+    "Layer kitchen waste on top of the dry leaves.",
+    "Add a layer of soil over the kitchen waste.",
+    "Optionally, mix cow dung slurry to speed up decomposition.",
+    "Cover the pit to avoid smell and flies.",
+    "Mix the contents weekly to aid decomposition.",
+    "Wait for 6 to 8 weeks for compost to be ready."
+  ],
+  "materials": [
+    "Kitchen waste",
+    "Dry leaves",
+    "Soil",
+    "Cow dung slurry (optional)"
+  ],
+  "risks": [
+    "Odor if not covered properly",
+    "Attracting pests if not maintained",
+    "Imbalance in composting if too much wet waste is added"
+  ],
+  "media": {
+    "images": [],
+    "videos": [],
+    "documents": []
+  },
+  "verification_score": 85,
+  "saved_at": "2026-01-23T19:20:59.955194Z"
+}

@@ -1,0 +1,35 @@
+{
+  "post_id": "p005",
+  "practice_name": "Clay Pot",
+  "description": "Clay pots are traditional vessels used for cooking and storing food. They are made from natural clay, which is abundant and biodegradable, making them an eco-friendly choice.",
+  "region": "maharastra",
+  "principles": [
+    "Sustainability: Utilizing natural materials that are biodegradable.",
+    "Cultural Heritage: Preserving traditional methods of pottery making.",
+    "Health: Clay pots are non-toxic and promote healthy cooking."
+  ],
+  "steps": [
+    "Gather natural clay from local sources.",
+    "Shape the clay into pots using traditional techniques.",
+    "Dry the pots in the sun to harden them.",
+    "Fire the pots in a kiln to increase durability.",
+    "Use the pots for cooking or storage, ensuring they are cleaned properly."
+  ],
+  "materials": [
+    "Natural clay",
+    "Water",
+    "Kiln for firing"
+  ],
+  "risks": [
+    "Cracking during drying if not done properly.",
+    "Potential for lead contamination if not sourced from safe materials.",
+    "Breakage during use if not handled carefully."
+  ],
+  "media": {
+    "images": [],
+    "videos": [],
+    "documents": []
+  },
+  "verification_score": 85,
+  "saved_at": "2026-01-23T19:26:39.349157Z"
+}

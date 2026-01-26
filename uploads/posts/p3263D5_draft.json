@@ -1,0 +1,33 @@
+{
+  "post_id": "p3263D5",
+  "practice_name": "Neem Leaves for Grain Storage",
+  "description": "A technique used in desert regions to capture and store rainwater, enhancing soil moisture and supporting crop cultivation.",
+  "region": "Madhya Pradesh (Bundelkhand)",
+  "principles": [
+    "Utilizes natural rainfall to recharge soil moisture",
+    "Promotes sustainable agriculture in arid climates",
+    "Reduces dependency on pumps and external water sources"
+  ],
+  "steps": [
+    "Identify suitable land slopes for water collection.",
+    "Construct barriers to direct rainwater flow.",
+    "Create channels to spread water across agricultural land.",
+    "Monitor soil moisture levels to assess effectiveness."
+  ],
+  "materials": [
+    "Natural barriers (e.g., stones, soil)",
+    "Channels for water flow",
+    "Tools for construction (shovels, picks)"
+  ],
+  "risks": [
+    "Ineffective water capture during low rainfall years",
+    "Soil erosion if barriers are not properly maintained",
+    "Potential for water stagnation leading to pests"
+  ],
+  "media": {
+    "images": [],
+    "videos": [],
+    "documents": []
+  },
+  "verification_score": 75
+}

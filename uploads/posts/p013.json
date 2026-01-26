@@ -1,0 +1,35 @@
+{
+  "post_id": "p013",
+  "practice_name": "Clay Pot",
+  "description": "Using clay pots to store drinking water, which cools naturally through evaporation.",
+  "region": "Rajasthan",
+  "principles": [
+    "Natural cooling through evaporation",
+    "Sustainable water storage",
+    "Reduction of electricity usage"
+  ],
+  "steps": [
+    "Store drinking water in a clay pot (Matka).",
+    "Place the Matka in a shaded area on a stand.",
+    "Cover the mouth of the pot with clean cloth to prevent dust and insects.",
+    "Change the water daily to avoid algae and smell.",
+    "Reverse the pot every week for maintenance."
+  ],
+  "materials": [
+    "Clay pot (Matka)",
+    "Clean cloth"
+  ],
+  "risks": [
+    "Potential for algae growth if water is not changed regularly.",
+    "Insects may contaminate water if not covered properly."
+  ],
+  "media": {
+    "documents": [],
+    "images": [
+      "uploads/media/images/bc29d5779c5945b4a10efed458503e2a.png"
+    ],
+    "videos": []
+  },
+  "verification_score": 85,
+  "saved_at": "2026-01-25T14:30:42.692970Z"
+}

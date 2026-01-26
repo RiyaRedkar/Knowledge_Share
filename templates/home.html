@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div style="text-align:center; margin-bottom:50px;">
+  <h1 style="font-size:44px; margin-bottom:10px;">
+    Knowledge Share Dashboard
+  </h1>
+  <p class="muted" style="max-width:760px; margin:auto;">
+    Preserve and document traditional sustainability practices using AI-assisted
+    drafting and human verification.
+  </p>
+</div>
+
+<!-- CENTER DASHBOARD CARDS -->
+<div style="
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+  flex-wrap: wrap;
+">
+
+  <!-- CREATE POST CARD -->
+  <div class="card" style="width:360px; text-align:left;">
+    <h2>Create Post</h2>
+    <p class="muted">
+      Upload text or elder audio with supporting media and generate
+      an AI-assisted structured post.
+    </p>
+    <a href="/create" class="btn" style="margin-top:16px;">
+      📝 Create Post
+    </a>
+  </div>
+
+  <!-- VIEW POSTS CARD -->
+  <div class="card" style="width:360px; text-align:left;">
+    <h2>View Posts</h2>
+    <p class="muted">
+      Browse verified practices stored in the system
+      and explore community knowledge.
+    </p>
+    <a href="/posts" class="btn" style="margin-top:16px;">
+      📚 View Posts
+    </a>
+  </div>
+
+</div>
+
+{% endblock %}

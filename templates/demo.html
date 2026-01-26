@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Knowledge Share – AI Validation Demo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 40px auto;
+      line-height: 1.6;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 100px;
+      margin-top: 8px;
+      padding: 10px;
+      font-size: 14px;
+    }
+
+    button {
+      margin-top: 12px;
+      padding: 10px 16px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .score-box {
+      margin-top: 20px;
+      padding: 15px;
+      border: 1px solid #ccc;
+      background: #f9f9f9;
+    }
+
+    .high { color: green; font-weight: bold; }
+    .medium { color: orange; font-weight: bold; }
+    .low { color: red; font-weight: bold; }
+  </style>
+</head>
+<body>
+
+  <h2>Traditional Practice</h2>
+
+  <textarea id="practiceText" readonly>
+This traditional rainwater harvesting practice was commonly used in semi-arid regions of India. Sloped rooftops were designed to direct rainwater into stone or clay channels. These channels carried water through sand and gravel filtration layers before storing it in underground tanks.
+
+The method uses natural materials such as stone slabs, lime mortar, sand, and gravel. Before the monsoon season, channels are cleaned to remove dust and debris. Proper slope is maintained to avoid water stagnation.
+  </textarea>
+
+  <h3>Add Your Comment</h3>
+
+  <textarea id="commentInput" placeholder="Write your comment here..."></textarea>
+  <button onclick="submitComment()">Submit Comment</button>
+
+  <div class="score-box">
+    <p>Validation Score: <span id="score">–</span></p>
+    <p>Confidence Level: <span id="confidence">–</span></p>
+    <p id="stats"></p>
+  </div>
+
+  <script>
+  async function submitComment() {
+    const practiceText = document.getElementById("practiceText").value;
+    const commentText = document.getElementById("commentInput").value.trim();
+
+    if (!commentText) {
+      alert("Please enter a comment.");
+      return;
+    }
+
+    try {
+      const response = await fetch("/add_comment", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          practice_text: practiceText,
+          comment: commentText
+        })
+      });
+
+      const data = await response.json();
+
+      document.getElementById("score").innerText =
+        data.validation_score ;
+
+      document.getElementById("confidence").innerText =
+        data.confidence_level;
+
+      document.getElementById("confidence").className =
+        data.confidence_level.toLowerCase();
+
+      document.getElementById("stats").innerText =
+        `Total comments: ${data.total_comments} | Experienced: ${data.experienced_comments}`;
+
+      document.getElementById("commentInput").value = "";
+
+    } catch (error) {
+      alert("Could not connect to Flask backend.");
+      console.error(error);
+    }
+  }
+</script>
+
+
+</body>
+</html>
