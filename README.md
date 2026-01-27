@@ -31,9 +31,13 @@ At the same time, generic AI tools provide unsafe or hallucinated recommendation
 ## 🏗️ System Architecture (Modular by Design)
 
 KnowledgeShare is built as **independent but integrated engines**, ensuring scalability and clarity.
+
 ├── Ingestion Engine
+
 ├── Validation Engine
+
 ├── Search Engine
+
 └── Modern Adaptation Engine
 
 
