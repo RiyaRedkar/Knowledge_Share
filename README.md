@@ -139,13 +139,17 @@ knowledge_platform/
 git clone <repo-url>
 cd knowledge_platform
 
+### 2️⃣ Create Virtual Environment
 python -m venv venv
 source venv/bin/activate   # Windows: venv\Scripts\activate
 
+### 3️⃣ Install Dependencies
 pip install -r requirements.txt
 
+### 4️⃣ Configure Environment
 OPENAI_API_KEY=your_api_key_here
 
+### 4️⃣ Configure Environment
 python app.py
 
 
