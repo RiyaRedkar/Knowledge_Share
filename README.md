@@ -104,33 +104,61 @@ Each engine solves a **specific problem** and communicates through structured da
 
 ## 📁 Project Structure
 knowledge_platform/
+
 │
+
 ├── app.py
+
 ├── routes/
+
 │ └── post_routes.py
+
 │
+
 ├── adaptation_engine/
+
 │ ├── adapter.py
+
 │ └── prompt.py
+
 │
+
 ├── search_engine/
+
 │ ├── indexer.py
+
 │ ├── searcher.py
+
 │ └── chroma_client.py
+
 │
+
 ├── validation_module/
+
 │ ├── routes.py
+
 │ └── utils.py
+
 │
+
 ├── shared/
+
 │ └── data_provider.py
+
 │
+
 ├── templates/
+
 ├── static/
+
 ├── uploads/
+
 │ ├── posts/
+
 │ ├── comments/
+
 │ └── media/
+
 └── README.md
 
 
