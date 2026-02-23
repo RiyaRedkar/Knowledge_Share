@@ -6,6 +6,7 @@ __pycache__/
 # Virtual environment
 venv/
 .env
+.env.*
 
 # Chroma / Vector DB
 chroma_store/

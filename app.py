@@ -2,6 +2,9 @@ from flask import Flask
 from routes.post_routes import post_bp
 from validation_module.routes import validation_bp
 
+from dotenv import load_dotenv
+load_dotenv()
+
 app = Flask(__name__)
 app.secret_key = "supersecretkey"
 
